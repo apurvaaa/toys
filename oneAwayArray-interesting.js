@@ -36,7 +36,7 @@ const oneAway = (str1, str2) => {
 }
 
 
-// recursively (incomplete):
+// recursively (incomplete):   |length(a[i:]) - length(b[j:])| + mistakes < 2
 
 const oneAwayRecursive = (str1, str2, i = 0, j = 0, mistakes = 0) => {
     if ((str1.length > str2.length + 1) || (str1.length < str2.length - 1)) {
