@@ -1,0 +1,1 @@
+// assuming we have a is-substring method, write code to check if str2 is a rotated str1.
