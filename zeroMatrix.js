@@ -23,4 +23,4 @@ const zeroMatrix = (matrix) => {
     return matrix;
 }
 
-console.log(zeroMatrix([ [1,0,3], [0, 5, 6], [7, 8, 9]]));
+console.log(zeroMatrix([[1,0,3], [0, 5, 6], [7, 8, 9]]));
