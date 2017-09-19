@@ -1,3 +1,5 @@
+// yet to do extra credit
+
 /**
  * A heap is a special kind of tree in which a parent node is ordered only in
  * respect to its immediate children. Unlike the binary search tree you may have
@@ -59,11 +61,11 @@
 // the equations above to navigate parent / child relationships in the storage array, and write any
 // helper functions needed to assist you.
 //
-// Extra credit: `BinaryHeap`'s `this._compare` is hard-coded to assist in making a min heap, modify `BinaryHeap`
+// TODO: Extra credit: `BinaryHeap`'s `this._compare` is hard-coded to assist in making a min heap, modify `BinaryHeap`
 // to accept an optional argument which is a function used as the sorting mechanism for the heap.
 // That way you can use your `BinaryHeap` class to construct a max heap or min heap or whatever.
 //
-// Extra extra credit: Implement `heapSort`. `heapSort` takes an array, constructs it into a `BinaryHeap`
+// TODO: Extra extra credit: Implement `heapSort`. `heapSort` takes an array, constructs it into a `BinaryHeap`
 // and then iteratively returns the root of the `BinaryHeap` until its empty, thus returning a sorted array.
 
 
