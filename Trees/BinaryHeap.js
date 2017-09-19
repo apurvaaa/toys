@@ -78,7 +78,14 @@ function BinaryHeap () {
   BinaryHeap.prototype.getRoot = function () {
     return this._heap[0];
   }
-  
+
+  BinaryHeap.prototype.areChildrenSmaller = function (curIndex, child1, child2) {
+    // console.log('heap which is prob : ', this._heap);
+    if (this._compare(this._heap[curIndex], this._heap[child1]) || this._compare(this._heap[curIndex], this._heap[child2]))
+      return false;
+    else return true;
+  }
+
   BinaryHeap.prototype.insert = function (value) {
     //insert value at end of array
     this._heap.push(value);
@@ -99,8 +106,43 @@ function BinaryHeap () {
   }
   
   BinaryHeap.prototype.removeRoot = function () {
+    if (this._heap.length === 0) return 'empty heap';
+
+    //swap tail with head
+    let temp = this._heap[0];
+    this._heap[0] = this._heap[this._heap.length - 1];
+    //pop tail
+    const headVal = this._heap.pop();
+
+    if (this._heap.length === 0) return;
+
+    let curIndex = 0;
+    let [child1, child2] = this.getChildrenIndices(curIndex);
+    while((child1 <= (this._heap.length - 1)) && this.areChildrenSmaller(curIndex, child1, child2)) {
+      console.log(' heap before while starts : ', this._heap);
+      let swapIndex;
+      //if child2 doesnt exist
+      if (child2 > (this._heap.length - 1)) {
+        swapIndex = child1;
+      }
+      else {
+        //smallest child
+        swapIndex = (this._compare(this._heap[child1], this._heap[child2])) ? child1 : child2;
+      }
+      // swap with child
+      let temp = this._heap[swapIndex];
+      this._heap[swapIndex] = this._heap[curIndex];
+      this._heap[curIndex] = temp;
+
+      // update parIndex and curIndex
+      curIndex = swapIndex;
+      [child1, child2] = this.getChildrenIndices(curIndex);
+    }
+    console.log('after root removal: ', this._heap);
   
   }
+
+ 
 
 
   BinaryHeap.prototype.getParentIndex = (childIndex) => {
@@ -116,4 +158,7 @@ function BinaryHeap () {
   binHeap.insert(2);
   binHeap.insert(5);
   binHeap.insert(3);
+  binHeap.insert(6);
   binHeap.insert(1);
+  binHeap.insert(8);
+  binHeap.removeRoot();
