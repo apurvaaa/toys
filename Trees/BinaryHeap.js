@@ -81,67 +81,39 @@ function BinaryHeap () {
   
   BinaryHeap.prototype.insert = function (value) {
     //insert value at end of array
-    var par;
     this._heap.push(value);
-    if (this._heap.length === 1) {
-      return;
+    if (this._heap.length === 1) return;
+    let curIndex = this._heap.length - 1;
+    let parIndex = this.getParentIndex(curIndex);
+    while((curIndex !== 0) && !this._compare(this._heap[parIndex], this._heap[curIndex])) {
+      // swap with parents
+      let temp = this._heap[parIndex];
+      this._heap[parIndex] = this._heap[curIndex];
+      this._heap[curIndex] = temp;
+
+      // update parIndex and curIndex
+      curIndex = parIndex;
+      parIndex = this.getParentIndex(curIndex);
     }
-    var parent = Math.floor( (this._heap.length - 2) / 2 );
-    var child = this._heap.length - 1;
-    //loop till parent value is less than child and till root
-    while(child !== 0 && this._compare(this._heap[child], this._heap[parent])) {
-      par = this._heap[parent];
-      this._heap[parent] = this._heap[child];  
-      this._heap[child] = par;
-      child = parent;
-      parent = Math.floor( (parent - 1) / 2 );
-    }
-    
+    console.log('after insertion: ', this._heap);
   }
   
   BinaryHeap.prototype.removeRoot = function () {
-    if (this._heap.length === 1) {
-      return this._heap.pop();
-    }
-    //swap last and first
-    var result = this._heap[0];
-    var swap = this._heap[0];
-    this._heap[0] = this._heap[(this._heap).length - 1];
-    this._heap.pop();
-    // establish parent and children indices
-    var parent = 0;
-    var childrenIndices = [parent * 2 + 1, parent * 2 + 2];
-  
-    //while parent is greater than kids
-  
-    while(((this._compare(this._heap[childrenIndices[0]], this._heap[parent]) || this._compare(this._heap[childrenIndices[1]], this._heap[parent]) || (parent >= this._heap.length - 1) && (childrenIndices[0] <= this._heap.length || childrenIndices[1] <= this._heap.length)))) {
-      if (this._compare(this._heap[childrenIndices[0]], this._heap[parent]) && this._compare(this._heap[childrenIndices[1]], this._heap[parent])) {
-        if (this._compare(this._heap[childrenIndices[0]], this._heap[childrenIndices[1]])) {
-          swap = this._heap[parent];
-          this._heap[parent] = this._heap[childrenIndices[0]];
-          this._heap[childrenIndices[0]] = swap;
-          parent = childrenIndices[0];
-        } else {
-          swap = this._heap[parent];
-          this._heap[parent] = this._heap[childrenIndices[1]];
-          this._heap[childrenIndices[1]] = swap;
-          parent = childrenIndices[1];
-        }
-      }
-      else if (this._heap[childrenIndices[1]] === undefined || this._compare(this._heap[childrenIndices[0]], this._heap[childrenIndices[1]])) {
-        swap = this._heap[parent];
-        this._heap[parent] = this._heap[childrenIndices[0]];
-        this._heap[childrenIndices[0]] = swap;
-        parent = childrenIndices[0];
-      } else {
-        swap = this._heap[parent];
-        this._heap[parent] = this._heap[childrenIndices[1]];
-        this._heap[childrenIndices[1]] = swap;
-        parent = childrenIndices[1];
-      }
-      childrenIndices = [parent * 2 + 1, parent * 2 + 2];
-    }
-  
-    return result;
   
   }
+
+
+  BinaryHeap.prototype.getParentIndex = (childIndex) => {
+    return Math.floor( (childIndex - 1) / 2 );
+  }
+
+  BinaryHeap.prototype.getChildrenIndices = (parentIndex) => {
+    return [parentIndex * 2 + 1, parentIndex * 2 + 2];
+  }
+
+
+  let binHeap = new BinaryHeap();
+  binHeap.insert(2);
+  binHeap.insert(5);
+  binHeap.insert(3);
+  binHeap.insert(1);
