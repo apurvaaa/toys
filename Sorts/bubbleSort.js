@@ -30,29 +30,61 @@
  *
 */
 
-// Introduce i into the global scope so we can test function efficiency
-var i;
 
-// Feel free to add helper functions if needed.
+// var i ;
+// var bubbleSort = function(array) {
+//   var swapped = false;
+//   for (i = 0; i < array.length - 1; i++) {
+//     for (var j = 0; j <= array.length - 1 ; j++) {
+//       if (array[j] > array[j + 1]) {
+//         var swap = array[j + 1];
+//         array[j + 1] = array[j];
+//         array[j] = swap;
+//         swapped = true;
+//       }
+//     }
+//     if (!swapped) {
+//       break;
+//     }
+//     swapped = false;
+//   }
+//   return array;
+// };
+// //Worst time conplexity is always O (n square)
 
+//without considering every element
+const bubbleSort1 = (array) => {
 
-var i ;
-var bubbleSort = function(array) {
-  var swapped = false;
-  for (i = 0; i < array.length - 1; i++) {
-    for (var j = 0; j <= array.length - 1 ; j++) {
-      if (array[j] > array[j + 1]) {
-        var swap = array[j + 1];
-        array[j + 1] = array[j];
-        array[j] = swap;
-        swapped = true;
+  for (let rounds = 0; rounds < array.length - 1; rounds++) {
+    for (let j = 0; j < array.length - 1 - rounds; j++) {
+      if (array[j] > array[j+1]) {
+        let temp = array[j+1];
+        array[j+1] = array[j];
+        array[j] = temp;
       }
     }
-    if (!swapped) {
-      break;
-    }
-    swapped = false;
   }
+
   return array;
-};
-//Worst time conplexity is always O (n square)
+}
+
+// with leaving as soon as something is swapped
+const bubbleSort2 = (array) => {
+  
+    for (let rounds = 0; rounds < array.length - 1; rounds++) {
+      let swapped = false;
+      for (let j = 0; j < array.length - 1 - rounds; j++) {
+        if (array[j] > array[j+1]) {
+          let temp = array[j+1];
+          array[j+1] = array[j];
+          array[j] = temp;
+          swapped = true;
+        }
+      }
+      if (!swapped) return array;
+    }
+  
+    return array;
+  }
+console.log(bubbleSort1([2, 1, 3, 35, 12, 67, -3]));
+console.log(bubbleSort2([2, 1, 3, 35, 12, 67, -3]));
