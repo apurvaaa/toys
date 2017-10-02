@@ -65,4 +65,20 @@ var rockPaperScissors = function (rounds) {
     return result;
   }
 
-  // TODO: top down recursive
+  //  top down recursive
+
+  const rockPaperScissors2 = (rounds) => {
+    let seed = [['rock'], ['paper'], ['scissor']];
+    if (rounds === 1) return seed;
+    const rawResults = rockPaperScissors2(rounds - 1);
+    let results = [];
+
+    for (let i = 0; i < rawResults.length; i++) {
+        for (let j = 0; j < seed.length; j++) {
+            results.push(rawResults[i].concat(seed[j]));
+        }
+    }
+    return results;
+  }
+
+console.log(rockPaperScissors2(2)) // => [['rock', 'rock', 'rock', 'rock', 'rock'], etc...])
