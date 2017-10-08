@@ -32,7 +32,7 @@
  */
 
 'use strict';
-//TODO
+
 
 var compose = function(...args) {
   const args2 = args.reverse();
