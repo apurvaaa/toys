@@ -32,10 +32,42 @@
  */
 
 'use strict';
-//TODO:
+//TODO
 
-var compose = function() {
+var compose = function(...args) {
+  const args2 = args.reverse();
+  
+  return (function (inputVal) {
+    let remainder = inputVal;
+    // console.log(remainder);
+    for (let val of args2) {
+      remainder = val(remainder);
+      // console.log(remainder);
+    }
+    return remainder;
+  });
 };
 
-var pipe = function() {
+var greet = function(name){ return 'hi: ' + name;}
+var exclaim = function(statement) { return statement.toUpperCase() + '!';}
+var welcome = compose(greet, exclaim);
+console.log(welcome('phillip')); // 'hi: PHILLIP!'
+
+var pipe = function(...args) {
+
+  return (function (inputVal) {
+    let remainder = inputVal;
+    // console.log(remainder);
+
+    for (let val of args) {
+      remainder = val(remainder);
+      // console.log(remainder);
+    }
+    return remainder;
+  });
 };
+
+var add2 = function(number){ return number + 2; }
+var multiplyBy3 = function(number){ return number * 3; }
+console.log(pipe(add2, multiplyBy3)(5)) // 21
+console.log(pipe(add2, multiplyBy3, multiplyBy3)(5)) // 63
