@@ -102,3 +102,37 @@ var func = function(a, b){ return a + b };
 var boundFunc = func.bind(null, 'foo');
 var result = boundFunc('bar');
 console.log(result); // === 'foobar'; // true
+
+
+
+
+// solution given :
+
+/*
+var bind = function(func, context) {
+
+  var previousArgs = Array.prototype.slice.call(arguments, 2);
+
+  return function() {
+    var args = Array.prototype.slice.call(arguments);
+    args = previousArgs.concat(args);
+
+    return func.apply(context, args);
+  };
+  };
+
+
+
+  Function.prototype.bind = function( context ) {
+  
+    var previousArgs = Array.prototype.slice.call(arguments, 1);
+    var func = this;
+  
+    return function() {
+      var args = Array.prototype.slice.call(arguments);
+      args = previousArgs.concat(args);
+  
+      return func.apply(context, args);
+    };
+    };
+*/
