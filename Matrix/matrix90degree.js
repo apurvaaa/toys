@@ -25,62 +25,24 @@ const matTilt = (mat) => {
   return newMat;
 }
 
-// in place
+// in place - transpose and reverse columns
 const matrixTiltInPlace = (mat) => {
 
-  let low = 0;
-  let high = mat.length - 1;
-  let level = 0;
-  let temp;
-  while (low < high) {
-    console.log('low, high -> ', low, ' : ', high);
-    temp = [];
-    for (let i = low; i <= high; i++) {
-      // copy elements from top
-      temp.push(mat[low][i]);
+  for (let i = 0; i < mat.length; i++) {
+    for (let j = i; j < mat.length; j++) {
+      let temp = mat[i][j]
+      mat[i][j] = mat[j][i]
+      mat[j][i] = temp
     }
-    console.log('temp1: ', temp);
-    console.log('mat : ', mat);
-    for (let i = low; i <= high; i++) {
-      // swap elements witht he right column
-      let swapTemp = mat[i][high];
-      mat[i][high] = temp[i];
-      temp[i] = swapTemp;
+  }
+  // depending on direction of tilt, reverse columns or rows
+  
+  for (let i = 0; i < mat.length; i++) {
+    for (let j = 0, k = mat.length - 1; j < k; j++, k--) {
+      let temp = mat[i][j]
+      mat[i][j] = mat[i][k]
+      mat[i][k] = temp
     }
-    console.log('temp2: ', temp);
-    console.log('mat : ', mat);
-    // for (let i = low + 1; i <= high; i++) {
-    for (let i = low; i <= high; i++) {
-      // swap elements with the bottom row
-      let swapTemp = mat[high][high-i];
-      mat[high][high - i] = temp[i];
-      temp[i] = swapTemp;
-    }
-    console.log('temp3: ', temp);
-    console.log('mat : ', mat);
-    
-    // for (let i = low; i <= high - 1; i++) {
-    for (let i = low; i <= high ; i++) {
-      // swap elements with the left col
-      let swapTemp = mat[high - i][low];
-      mat[high - i][low] = temp[i + 1];
-      temp[i] = swapTemp;
-    }
-    console.log('temp4: ', temp);
-    console.log('mat : ', mat);
-    for (let i = low + 1; i <= high - 1; i++) {
-      // swap elements with the top row
-      let swapTemp = mat[low][i];
-      mat[low][i] = temp[i];
-      temp[i] = swapTemp;
-    }
-    console.log('temp5: ', temp);
-    console.log('mat : ', mat);
-    
-
-    level++;
-    low++;
-    high--;
   }
   return mat;
 }
