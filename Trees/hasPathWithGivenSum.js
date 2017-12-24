@@ -8,18 +8,21 @@
 //   this.right = null;
 // }
 const hasPathWithGivenSum = (t, s) => {
-    if (t === null) return false;
+    if (t === null) {
+        if (s === 0) return true;
+        else return false;
+    } 
     // console.log(t.value, s)
     if (s === t.value && t.left === null && t.right === null) {
         return true;
     } 
-
-    if (hasPathWithGivenSum(t.left, s - t.value)) 
+    if (t.left !== null && hasPathWithGivenSum(t.left, s - t.value)) 
         return true;
-    else if (hasPathWithGivenSum(t.right, s - t.value)) 
+    else if (t.right !== null && hasPathWithGivenSum(t.right, s - t.value)) 
         return true;
     return false;
 }
+
 
 let t = {
     "value": 4,
