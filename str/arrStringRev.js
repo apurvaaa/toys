@@ -24,7 +24,7 @@ output: [ 'p', 'r', 'a', 'c', 't', 'i', 'c', 'e', '  ',
 // sol in java :
 
 
-
+/*
 
 import java.io.*;
 import java.util.*;
@@ -50,7 +50,9 @@ class Solution {
     }
     
     reverse(arr, i, j-1);
-/*    
+
+    
+  //// commented  
     if(i!=j){
       int ii=i, jj=j-1;
       while(ii<jj){
@@ -58,18 +60,18 @@ class Solution {
         ii++;jj--;
       }
     }
-  */  
+    
     // your code goes here
-/*    
+   
     int i=0, j=arr.length-1;
     while(i<j){
       swap(arr, i, j);
       i++;j--;
     }
-    */
+    
     return arr;
   }
-  
+  /// comment end
 	public static void reverse(char[] a, int i, int j) {
     while(i<j){
       swap(a, i, j);
@@ -88,5 +90,41 @@ class Solution {
   }
 
 }
+*/
 
+// best solution inline - assuming spaces are always single
+
+const reverseArr = (arr) => {
+  let first, last;
+  for (let i = 0; i < arr.length; i++) {
+    if (i === 0) {
+      first = 0;
+      last = 0;
+    }
+    if (arr[i] === ' ') {
+      last = i - 1
+      swapIt(arr, first, last)
+      first = i+1;
+    }
+
+    if (i === arr.length - 1) {
+      last = i
+      swapIt(arr, first, last)
+    }
+  }
+  swapIt(arr, 0, arr.length - 1)
+  return arr;
+}
+
+const swapIt = (arr, low, high) => {
+  while (low < high) {
+    let temp = arr[low];
+    arr[low] = arr[high];
+    arr[high] = temp
+    low++;
+    high--;
+  }
+}
+
+console.log(reverseArr(['a', 'p', 'p', ' ', 'c', 'o', 'd', 'e']));
 
