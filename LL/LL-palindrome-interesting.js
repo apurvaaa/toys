@@ -49,3 +49,60 @@
         }
 
     }
+
+
+
+    //implementing iterative reversing 2nd half of LL solution
+
+    function isListPalindrome(l) {
+        // find mid 
+        let slow = l;
+        let fast = l;
+        if (l === null || l.next === null) return true
+        while (fast.next !== null && fast.next.next !== null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        //reverse 2nd half of list
+        const mid = slow;
+        fast = mid.next
+        let third = mid.next.next
+        
+        while (third !== null) {
+            fast.next = slow;
+            slow = fast;
+            fast = third;
+            third = third.next;
+        }
+        
+        fast.next = slow;
+        tail = fast;
+        // fast holds the tail of the list now
+        slow = l
+        while (slow !== fast && slow.next !== fast) {
+            if (slow.value !== fast.value) return false
+            slow = slow.next
+            fast = fast.next
+        }
+        
+        if (slow.next === fast) {
+            if (slow.value !== fast.value) return false
+        }
+        
+        //reverse 2nd part of LL again
+        fast = tail.next;
+        slow = fast.next;
+        tail.next = null
+        while (tail !== mid) {
+            fast.next = tail;
+            tail = fast;
+            fast = slow;
+            slow = slow.next;
+        }
+        
+        return true;
+        
+    }
+    
+    

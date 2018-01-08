@@ -1,5 +1,5 @@
 /**
- * Insertion sort is a basic sorting algorithm.
+ * Insertion sort is a basic sorting algorithm. - completed
  *
  * Insertion sort iterates over an array, growing a sorted array behind the current location.
  * It takes each element from the input and finds the spot, up to the current point,
@@ -45,8 +45,23 @@ var testingTransform = function(array) {
     return transform;
   };
   
-  var insertionSort = function(array
+  var insertionSort = function(arr
   ) {
     // Your code goes here. Feel free to add helper functions if needed.
-    return array;
+    let cur;
+    for (let i = 0; i < arr.length; i++) {
+      cur = arr[i]
+      let j = i - 1;
+      while (j >= 0 && arr[j] > cur) {
+        arr[j + 1] = arr[j];
+        // console.log(testingTransform(arr))
+        j--;
+      }
+      if (arr[j] > cur) arr[j] = arr[i]
+      else arr[j + 1] = cur
+    }
+
+    return arr;
   };
+
+  console.log(insertionSort([ 2, 5,8, 4,1]))

@@ -68,7 +68,7 @@ const bubbleSort1 = (array) => {
   return array;
 }
 
-// with leaving as soon as something is swapped
+// with leaving as soon as something is not swapped
 const bubbleSort2 = (array) => {
   
     for (let rounds = 0; rounds < array.length - 1; rounds++) {
