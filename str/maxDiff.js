@@ -1,8 +1,14 @@
+/* 
+The maximum differene between elements in some array a, is defined as 
+the largest difference between any a[i] and a[j] where a[i] < a[j] and i < j.
+e.g. if a = [4, 1, 2, 3] then max difference would be: a[3] - a[1] = 3 - 1 = 2
+The function must return an integer denoting the maximum difference between any
+pair of elements in a, if no such number exists, (whole array is in descending order) 
+then, return -1.
+*/
 
-
-
-
-function maxDifference(a) {
+// brute force
+function maxDifference1(a) {
   let res = -1;
   for (let i = 1; i < a.length; i++) {
     for (let j = 0; j < i; j++) {
@@ -14,34 +20,7 @@ function maxDifference(a) {
   return res;
 }
 
-function maxDifference(a) {
-    let res = -1;
-    let min = Number.POSITIVE_INFINITY;
-    let mins = [];
-    for (let i = 0; i < a.length; i++) {
-      mins.push(Number.POSITIVE_INFINITY)
-    }
-    console.log(mins)
-    for (let i = 0; i < a.length; i++) {
-      if (a[i] < mins[i]) {
-        mins[i] = a[i]
-      }
-      if (i !== 0 && a[i] > a[i - 1]) {
-        mins[i] = mins[i - 1]
-      }
-    }
-    console.log(mins)
-    for (let i = 1; i < a.length; i++) {
-      if ( a[i] - mins[i - 1] > res) {
-        res = a[i] - mins[ i - 1]
-      }
-    }
-    return res;
-  }
-
-
-
-
+// using min
   function maxDifference3(a) {
   
     if (a === undefined || a.length === 1 || a.length === 0) return -1;
