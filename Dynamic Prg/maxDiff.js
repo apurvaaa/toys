@@ -5,6 +5,10 @@ e.g. if a = [4, 1, 2, 3] then max difference would be: a[3] - a[1] = 3 - 1 = 2
 The function must return an integer denoting the maximum difference between any
 pair of elements in a, if no such number exists, (whole array is in descending order) 
 then, return -1.
+
+
+
+Questions also used for stock prices. Couls be solved by dynamic programming
 */
 
 // brute force
