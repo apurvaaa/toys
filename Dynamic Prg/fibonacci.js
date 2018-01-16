@@ -39,4 +39,17 @@ let fib3 = (i) => {
     fib3Helper(i)
     return lookUpTab[i]
 }
-console.log(fib3(4))
+
+// using tabulation
+
+let fib4 = (i) => {
+    const tabu = [1, 1]; 
+    let k = 2
+    while (k <= i)
+    {  
+        tabu[k] = tabu[k - 1] + tabu[k - 2]
+        k++
+    } 
+    return tabu[i]
+}
+console.log(fib4(5))
