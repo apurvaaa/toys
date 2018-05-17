@@ -38,3 +38,17 @@ Your answer will be considered correct if its absolute error doesn't exceed 10-5
 function computeDefiniteIntegral(l, r, p) {
 
 }
+
+
+/* in python:
+
+def computeDefiniteIntegral(l, r, p):
+    P = []
+    for i in range(len(p)):
+        P.append(p[i]/(i+1))
+    R = sum([coef*(r**(i+1)) for i, coef in enumerate(P)])
+    L = sum([coef*(l**(i+1)) for i, coef in enumerate(P)])
+    print(P)
+    return R-L
+
+    */
