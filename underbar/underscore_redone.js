@@ -156,7 +156,26 @@ console.log(contains([2,4,5,6], 1))
 
 //12. every
 // Determine whether all of the elements match a truth test.
+const every = (array, test) => {
+    let result = true
+    each(array, (ele) => {
+        result = result && test(ele)
+    })
+    return result
+}
+
+console.log(every([2,4,5,6], (ele) => ele % 2 === 0))
+console.log(every([2,4,6], (ele) => ele % 2 === 0))
 
 // 13. some
 // Determine whether any of the elements match a truth test. If no iterator is
   // provided, provide a default one
+  const some = (array, test) => {
+    let result = true
+    each(array, (ele) => {
+        result = result || test(ele)
+    })
+    return result
+}
+console.log(some([2,4,5,6], (ele) => ele % 2 === 0))
+console.log(some([2,4,6], (ele) => ele % 2 !== 0))
