@@ -29,9 +29,7 @@ console.log(checkPermutation('abcdefg', 'agfbdee'))
 
 
 
-// URLify: write a method to replace all spaces in a string with '%20'. You may 
-// assume that the string has sufficient space at the end to hold the additional characters 
-// and that you are given teh true length of the string
+
 
 
 // Palindrome permutaion: Given a string, write a function to check if it is a permutation of a palindrome.
