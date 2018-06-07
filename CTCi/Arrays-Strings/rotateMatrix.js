@@ -10,13 +10,14 @@ const rotateMatrix = (matrix) => {
     for (let i = 0;  i < Math.floor(matrix.length / 2); i++) {
         // rows to turn 
         for (let j = i; j < matrix.length - 1 - i; j++) {
-
+            // turn right 90 degrees
             // let temp = matrix[i][j]
             // matrix[i][j] = matrix[j][matrix.length - 1 - i] 
             // matrix[j][matrix.length - 1 - i] = matrix[matrix.length - 1 - i][matrix.length - 1 - j]
             // matrix[matrix.length - 1 - i][matrix.length - 1 - j] = matrix[matrix.length - 1 - j][i]
             // matrix[matrix.length - 1 - j][i] = temp
 
+            // turn left 90 degrees
             let temp = matrix[i][j]
             matrix[i][j] = matrix[matrix.length - 1 - j][i]
             matrix[matrix.length - 1 - j][i] = matrix[matrix.length - 1 - i][matrix.length - 1 - j]
