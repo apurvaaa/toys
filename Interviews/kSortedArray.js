@@ -57,7 +57,7 @@ function sortKSortedArray(array, k) {
 	if (array.length === 0) return array;
 	// ptr = 0
 	let ptr = 0;
-	const lastIndexOfHeap = (k === array.length) ? k : k + 1);
+	const lastIndexOfHeap = (k === array.length) ? k : k + 1;
 
 	// build min heap with k elements
 	let heapK = buildHeap(array.slice(0, lastIndexOfHeap))
