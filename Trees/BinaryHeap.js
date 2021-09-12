@@ -155,7 +155,7 @@ function BinaryHeap () {
     return [parentIndex * 2 + 1, parentIndex * 2 + 2];
   }
 
-
+/*
   let binHeap = new BinaryHeap();
   binHeap.insert(2);
   binHeap.insert(5);
@@ -164,6 +164,7 @@ function BinaryHeap () {
   binHeap.insert(1);
   binHeap.insert(8);
   binHeap.removeRoot();
+  */
 
   // ------------------------------------------------
   // using ES6:
@@ -234,6 +235,88 @@ class maxHeap {
       right = (rightIndex < this.heapArray.length) ? this.heapArray[rightIndex] : null;
     }
   }
+}
 
+let binHeap = new maxHeap();
+binHeap.insert(2);
+binHeap.insert(5);
+binHeap.insert(3);
+binHeap.insert(6);
+binHeap.insert(1);
+binHeap.insert(8);
+console.log(binHeap.extractMax());
 
+//-----
+
+const MinHeap = class {
+  compare (a, b) {
+      return a - b
+  }
+constructor (compareFunc = null, arr = []) {
+  this.heapArray = [null,...arr];
+  if (compareFunc) this.compare = compareFunc
+}
+
+insert (ele) {
+  this.heapArray.push(ele)
+  let i = this.heapArray.length - 1
+  while(i > 0) {
+    this.heapifyDown(i);
+    i--;
+  } 
+}
+
+extractMin () {
+  if (this.heapArray.length <= 1) {
+    return null
+  }
+  [this.heapArray[this.heapArray.length - 1], this.heapArray[1]] = [this.heapArray[1], this.heapArray[this.heapArray.length - 1]]
+  const ele = this.heapArray.pop()
+  this.heapifyDown(1)
+  return ele;
+}
+
+peek () {
+  if (this.heapArray.length >= 2) {
+    return this.heapArray[1]
+  }
+  return null;
+}
+
+heapifyDown (index) {
+  let i = index;
+  let leftIndex = 2 * i;
+  let rightIndex = 2 * i + 1
+  let left = (leftIndex < this.heapArray.length) ? this.heapArray[leftIndex] : null;
+  let right = (rightIndex < this.heapArray.length) ? this.heapArray[rightIndex] : null;
+  while((left && this.compare(this.heapArray[i], left) > 0) || (right && this.compare(this.heapArray[i],right) > 0)) {
+    if (left && right) {
+      if (this.compare(left,right) <= 0) {
+        if (this.compare(this.heapArray[i], left) > 0) {
+          [this.heapArray[i], this.heapArray[leftIndex]] = [this.heapArray[leftIndex], this.heapArray[i]]
+          i = leftIndex
+        }
+      } else {
+        if (this.compare(this.heapArray[i], right) > 0) {
+          [this.heapArray[i], this.heapArray[rightIndex]] = [this.heapArray[rightIndex], this.heapArray[i]]
+          i = rightIndex
+        }
+      }
+    } else if (left) {
+      if (this.compare(this.heapArray[i], left) > 0) {
+        [this.heapArray[i], this.heapArray[leftIndex]] = [this.heapArray[leftIndex], this.heapArray[i]]
+        i = leftIndex
+      }
+    } else {
+      if (this.compare(this.heapArray[i], right) > 0) {
+        [this.heapArray[i], this.heapArray[rightIndex]] = [this.heapArray[rightIndex], this.heapArray[i]]
+        i = rightIndex;
+      }
+    }
+    leftIndex = 2 * i;
+    rightIndex = 2 * i + 1
+    left = (leftIndex < this.heapArray.length) ? this.heapArray[leftIndex] : null;
+    right = (rightIndex < this.heapArray.length) ? this.heapArray[rightIndex] : null;
+  }
+}
 }
