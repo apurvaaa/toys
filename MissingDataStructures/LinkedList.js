@@ -36,6 +36,7 @@ class Node {
 }
 
 class LList {
+  // can be used for primitive data types
   #head = null
   #tail = null
   #length = 0
